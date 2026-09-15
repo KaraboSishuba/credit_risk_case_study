@@ -174,4 +174,4 @@ Verification queries confirmed full row reconciliation (8,950 total records proc
 | `Customer_Data.csv` | Raw source data from Kaggle (8,950 records, 18 columns) |
 | `customer_staging_rows.csv` | Staged data after loading into `customer_staging` |
 | `customer_cleaned_rows.csv` | Final cleaned, transformed, and deduplicated output |
-| `customer_data_cleaning_documentation.md` | This file |
+| `README.md` | This file |
