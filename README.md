@@ -167,16 +167,6 @@ Verification queries confirmed full row reconciliation (8,950 total records proc
 
 ---
 
-## How to Export Your Cleaned Data from Supabase
-
-1. Navigate to your Supabase project dashboard.
-2. Go to the **Table Editor** tab.
-3. Select the `customer_cleaned` table.
-4. Click **Insert → Export data as CSV** (or use the SQL editor to query and download results).
-5. Save the file as `customer_cleaned.csv` inside your GitHub repository's `data/` or `outputs/` folder.
-
----
-
 ## Files in This Repository
 
 | File | Description |
