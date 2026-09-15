@@ -1,4 +1,5 @@
-## Project 1 of [N] — Data Analytics Portfolio
+## Project 1 of 3 — Data Analytics 
+SQL cleaning, transformation, window functions). If you
 # Customer Data SQL Cleaning & Transformation Pipeline
 
 ---
