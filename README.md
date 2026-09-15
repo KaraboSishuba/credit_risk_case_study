@@ -1,5 +1,5 @@
 ## Project 1 of 3 — Data Analytics 
-SQL cleaning, transformation, window functions). If you
+SQL cleaning, transformation, window functions.
 # Customer Data SQL Cleaning & Transformation Pipeline
 
 ---
