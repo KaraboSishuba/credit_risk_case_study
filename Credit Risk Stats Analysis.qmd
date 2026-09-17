@@ -1,0 +1,48 @@
+---
+title: "Credit Risk Analysis"
+author: "Karabo Sishuba"
+format: html
+editor: visual
+---
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+customer_data <- read_csv("C:/Users/Dell/Downloads/customer_cleaned_rows.csv")
+
+anova_model <- aov(credit_limit ~ balance_tier, data = customer_data)
+summary(anova_model)
+
+tukey_results <- TukeyHSD(anova_model)
+print(tukey_results)
+
+credit_summary <- customer_data %>%
+  group_by(balance_tier) %>%
+  summarise(
+    count = n(),
+    mean_credit = mean(credit_limit, na.rm = TRUE),
+    sd_credit = sd(credit_limit, na.rm = TRUE),
+    median_credit = median(credit_limit, na.rm = TRUE)
+  )
+print(credit_summary)
+
+t_test_subset <- customer_data %>%
+  filter(balance_tier %in% c("Low Balance", "High Balance"))
+
+t_test_result <- t.test(purchases ~ balance_tier, data = t_test_subset, var.equal = FALSE)
+print(t_test_result)
+
+purchases_summary <- t_test_subset %>%
+  group_by(balance_tier) %>%
+  summarise(
+    count = n(),
+    mean_purchases = mean(purchases, na.rm = TRUE),
+    sd_purchases = sd(purchases, na.rm = TRUE),
+    median_purchases = median(purchases, na.rm = TRUE)
+  )
+print(purchases_summary)
+
+```
