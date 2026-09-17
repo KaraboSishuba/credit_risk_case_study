@@ -1,6 +1,6 @@
 # Project 1 - Credit Risk Case Study
 
-# Customer Data SQL Cleaning & Transformation Pipeline
+# Phase 1 Customer Data SQL Cleaning & Transformation Pipeline
 
 ---
 
@@ -169,6 +169,7 @@ Verification queries confirmed full row reconciliation (8,950 total records proc
 - **Row count preserved** — 8,950 records in, 8,950 records out.
 
 ---
+## Phase 2 Visualisations and BI
 
 ## Files in This Repository
 
