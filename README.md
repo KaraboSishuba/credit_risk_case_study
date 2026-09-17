@@ -1,4 +1,4 @@
-# Project 1 of 3 - Data Analysis
+# Project 1 - Credit Risk Case Study
 SQL cleaning, transformation, window functions
 # Customer Data SQL Cleaning & Transformation Pipeline
 
