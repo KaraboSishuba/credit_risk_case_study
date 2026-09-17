@@ -169,7 +169,9 @@ Verification queries confirmed full row reconciliation (8,950 total records proc
 - **Row count preserved** — 8,950 records in, 8,950 records out.
 
 ---
-## Phase 2 Visualisations and BI
+## Phase 2 - Visualisations and BI Dashboards
+
+## Phase 3 - Statistical Analysis (Hypothesis Testing and ANOVA)
 
 ## Files in This Repository
 
