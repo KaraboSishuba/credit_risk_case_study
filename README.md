@@ -16,13 +16,30 @@ Every phase of this project — the SQL segmentation pipeline, the BI dashboard,
 
 | | |
 |---|---|
-| **Dataset** | Credit Card Customer Segmentation Data (Kaggle) |
+| **Dataset** | [Customer Data — Kaggle](https://www.kaggle.com/datasets/mbsoroush/customer-data) (credit card customer segmentation data) |
 | **Raw records** | 8,950 |
 | **Environment** | PostgreSQL (Supabase), Power BI, R (Quarto) |
 | **Objective** | Stage, clean, transform, deduplicate, and verify raw customer data; segment customers by balance tier; visualize the results in an interactive dashboard; and statistically test whether balance tier is a meaningful driver of credit limit and purchasing behavior |
 | **Techniques used** | 12 core SQL functions (cleaning/transformation), Power BI dashboarding with DAX measures, one-way ANOVA, Tukey HSD post-hoc testing, Welch's t-test |
 
 The raw dataset arrived with inconsistent ID formatting, missing financial values, and no built-in deduplication or segmentation logic. This project takes it through three phases: (1) a SQL pipeline that produces a clean, analysis-ready table (`customer_cleaned`), (2) a Power BI dashboard for exploratory and stakeholder-facing reporting, and (3) formal statistical testing to confirm the segmentation is meaningful and to quantify differences between customer tiers.
+
+---
+
+## Data Source & Limitations
+
+**Source:** [Customer Data, Kaggle](https://www.kaggle.com/datasets/mbsoroush/customer-data) — a public, anonymized dataset of ~9,000 active credit card holders and their 6-month usage behavior.
+
+This dataset is well suited to demonstrating a cleaning → segmentation → statistical-testing pipeline, but it has real constraints that limit how far the conclusions in this README can be generalized:
+
+- **No outcome/default field.** There is no delinquency, charge-off, or default flag. Everything in this project describes *credit limit and spending behavior*, not actual credit risk (probability of default). "Risk" language in this README refers to *exposure* (how much credit is extended), not *proven* risk.
+- **No customer identity beyond an anonymized ID.** There is no demographic, geographic, income, or credit-bureau data (age, region, employment, credit score), so the tiers cannot be cross-checked against, or explained by, customer characteristics outside the transaction data itself.
+- **Single snapshot, not a time series.** The data represents one aggregated 6-month window per customer, not month-by-month transactions. Trends, seasonality, and changes in behavior over time cannot be analyzed — the `snapshot_month` field in the SQL pipeline is a processing-run marker (`CURRENT_TIMESTAMP` at load time), not a date from the source data.
+- **Unknown collection period and population.** Kaggle does not document exactly when the data was collected or which population/country it was drawn from, so findings may not transfer directly to a different institution, region, or time period.
+- **Balance-tier cutoffs are manually chosen, not data-driven.** The `$1,000` / `$5,000` thresholds used in the `CASE WHEN` logic were set by inspection, not by an optimization or clustering method — a different cut (e.g., quantile-based or model-based segmentation) could produce different tier boundaries and results.
+- **Missing values imputed as `0.00`.** 1 missing `CREDIT_LIMIT` and 313 missing `MINIMUM_PAYMENTS` values were filled with `0.00` rather than a statistical estimate (e.g., mean/median imputation). For `MINIMUM_PAYMENTS`, this could understate that field for the affected 313 customers and slightly bias any analysis that uses it.
+- **Currency and units are unspecified.** The source does not state a currency for `BALANCE`, `CREDIT_LIMIT`, `PURCHASES`, etc.; all dollar-sign figures in this README follow the dataset's original (unlabeled) numeric units and should not be assumed to be USD without verification against the original Kaggle documentation.
+- **No sampling/train-test split.** All statistical tests (ANOVA, Tukey HSD, t-test) were run on the full cleaned dataset rather than a held-out sample, so p-values reflect this specific dataset and have not been validated against new/unseen data.
 
 ---
 
