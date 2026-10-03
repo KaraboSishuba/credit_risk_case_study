@@ -8,7 +8,7 @@
 
 **Balance tier is a statistically valid and commercially actionable segmentation: a small High Balance segment (7.6% of customers) concentrates both the bank's credit exposure and its highest-value spending behavior, while the majority Low Balance segment (53.6% of customers) is high-volume but low-value. Credit policy, underwriting attention, and growth strategy should therefore be tier-differentiated rather than uniform.**
 
-Every phase of this project — the SQL segmentation pipeline, the BI dashboard, and the hypothesis tests below — exists to test and support this statement: first by building the tiers, then by visualizing the gap between them, then by proving statistically that the gap is real and not due to chance.
+Every phase of this project tests and supports this statement: first by building the tiers, then by visualizing the gap between them, then by proving statistically that the gap is real and not due to chance.
 
 ---
 
@@ -220,8 +220,6 @@ The cleaned `customer_cleaned` table feeds a Power BI report built for stakehold
 - **Purchasing behavior** — purchase volume and frequency (one-off vs. installment) broken out by tier and tenure.
 - **Cash advance usage** — cash advance amount and frequency by tier, as an early indicator of liquidity stress.
 
-*(Open `Customer_Credit_Report_Dashboard.pbix` in Power BI Desktop to interact with the live filters and drill-throughs.)*
-
 ### KPI Measures (DAX)
 
 ```dax
@@ -373,7 +371,7 @@ datatable(credit_summary, options = list(pageLength = 5, scrollX = TRUE))
 
 ## Phase 3 — Statistical Analysis (Hypothesis Testing & ANOVA)
 
-**Tool:** R (`Credit_Risk_Analysis.pdf` / `Credit_Risk_Stats_Analysis.qmd`)
+**Tool:** R (`Credit_Risk_Stats_Analysis.qmd`)
 
 The goal of Phase 3 was to confirm, statistically, that the `balance_tier` segmentation built in Phase 1 corresponds to real, significant differences in customer behavior — the direct evidence base for the thesis above.
 
